@@ -19,6 +19,7 @@ btn.addEventListener('click', async () => {
 
     // We attach data to the URL like this: ?variable=value
     const finalURL = `${scriptURL}?name=AirbusUser&action=ButtonPressed`;
+    window.open(finalURL);
 
     try {
         // 'no-cors' is required for Google Scripts to work from GitHub
