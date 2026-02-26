@@ -12,11 +12,23 @@ if (hour < 12) {
 
 // 2. Change accent color on button click
 const btn = document.getElementById('colorBtn');
-const colors = ['#007bff', '#28a745', '#dc3545', '#ffc107', '#6f42c1'];
-let colorIndex = 0;
 
-btn.addEventListener('click', () => {
-    colorIndex = (colorIndex + 1) % colors.length;
-    btn.style.backgroundColor = colors[colorIndex];
-    greetingElement.style.color = colors[colorIndex];
+btn.addEventListener('click', async () => {
+    btn.innerText = "Sending...";
+
+    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycbyV_mn9jOc-cj6gI9iZv7JAUG0wtxJMoGQ-d9Ha62AuXcuCtrphAvue7EKISBbEbnPd/exec';
+
+    try {
+        // We use 'no-cors' because Google Scripts redirect several times
+        await fetch(scriptURL, {
+            method: 'GET', // or 'POST' depending on your script
+            mode: 'no-cors'
+        });
+
+        alert("Success! The script was triggered.");
+        btn.innerText = "Done!";
+    } catch (error) {
+        console.error('Error!', error.message);
+        btn.innerText = "Error";
+    }
 });
