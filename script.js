@@ -14,21 +14,17 @@ if (hour < 12) {
 const btn = document.getElementById('colorBtn');
 
 btn.addEventListener('click', async () => {
-    btn.innerText = "Sending...";
+    // Replace with your current /exec URL
+    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycbw4VyKRJTddjFX3LFGzm8QBShvJUtrWtuBailmlkVZE/dev';
 
-    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycbyV_mn9jOc-cj6gI9iZv7JAUG0wtxJMoGQ-d9Ha62AuXcuCtrphAvue7EKISBbEbnPd/exec';
+    // We attach data to the URL like this: ?variable=value
+    const finalURL = `${scriptURL}?name=AirbusUser&action=ButtonPressed`;
 
     try {
-        // We use 'no-cors' because Google Scripts redirect several times
-        await fetch(scriptURL, {
-            method: 'GET', // or 'POST' depending on your script
-            mode: 'no-cors'
-        });
-
-        alert("Success! The script was triggered.");
-        btn.innerText = "Done!";
+        // 'no-cors' is required for Google Scripts to work from GitHub
+        await fetch(finalURL, { mode: 'no-cors' });
+        console.log("Successfully sent to Google Logs!");
     } catch (error) {
-        console.error('Error!', error.message);
-        btn.innerText = "Error";
+        console.log("Failed to send", error);
     }
 });
