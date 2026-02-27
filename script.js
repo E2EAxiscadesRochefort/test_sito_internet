@@ -14,27 +14,22 @@ if (hour < 12) {
 const btn = document.getElementById('colorBtn');
 
 btn.addEventListener('click', () => {
-    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycbyV_mn9jOc-cj6gI9iZv7JAUG0wtxJMoGQ-d9Ha62AuXcuCtrphAvue7EKISBbEbnPd/exec';
-    const finalURL = `${scriptURL}?name=Lorenzo&action=AuthCheck`;
+    const scriptURL = 'https://script.google.com/.../exec'; // Your URL
+    const finalURL = `${scriptURL}?name=Lorenzo&action=ButtonClicked`;
 
-    // 1. Try the hidden way first
-    const hiddenIframe = document.getElementById('hidden_iframe');
-    hiddenIframe.src = finalURL;
+    // Open a small popup window instead of a full tab
+    const width = 400;
+    const height = 300;
+    const left = (window.innerWidth / 2) - (width / 2);
+    const top = (window.innerHeight / 2) - (height / 2);
 
-    console.log("Attempting silent log...");
+    const loginWindow = window.open(
+        finalURL,
+        'GoogleLogin',
+        `width=${width},height=${height},top=${top},left=${left}`
+    );
 
-    // 2. The "Safety Valve":
-    // If the user hasn't authorized the script, the iframe will be stuck.
-    // We give the user a hint: "Click again if it doesn't work"
-    // OR we can force a popup after a delay:
-
-    setTimeout(() => {
-        // We check if the user is still on the page.
-        // We ask them to open the 'Approval' window if they haven't yet.
-        const confirmAuth = confirm("Google might need your permission to log your email. Open the authorization window?");
-
-        if (confirmAuth) {
-            window.open(finalURL, '_blank');
-        }
-    }, 2000);
+    // Feedback on your site
+    btn.innerText = "Logged! ✅";
+    setTimeout(() => { btn.innerText = "Click Me Again"; }, 3000);
 });
