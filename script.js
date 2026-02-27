@@ -18,7 +18,7 @@ btn.addEventListener('click', async () => {
     const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycbw4VyKRJTddjFX3LFGzm8QBShvJUtrWtuBailmlkVZE/dev';
 
     // We attach data to the URL like this: ?variable=value
-    const finalURL = `${scriptURL}?name=AirbusUser&action=ButtonPressed`;
+    const finalURL = `${scriptURL}?name=Lorenzo&action=ButtonPressed`;
     window.open(finalURL);
     //
     // try {
