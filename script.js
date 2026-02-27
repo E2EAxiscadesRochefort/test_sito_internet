@@ -14,13 +14,27 @@ if (hour < 12) {
 const btn = document.getElementById('colorBtn');
 
 btn.addEventListener('click', () => {
-    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycbyV_mn9jOc-cj6gI9iZv7JAUG0wtxJMoGQ-d9Ha62AuXcuCtrphAvue7EKISBbEbnPd/exec';
-    const finalURL = `${scriptURL}?name=Lorenzo&action=ButtonPressed`;
+    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycb.../exec';
+    const finalURL = `${scriptURL}?name=Lorenzo&action=AuthCheck`;
 
-    // This loads the URL in the hidden iframe
-    // Because it's a "frame," it uses your Airbus login cookies!
-    document.getElementById('hidden_iframe').src = finalURL;
+    // 1. Try the hidden way first
+    const hiddenIframe = document.getElementById('hidden_log_frame');
+    hiddenIframe.src = finalURL;
 
-    console.log("Sent via hidden iframe");
-    alert("Action logged!");
+    console.log("Attempting silent log...");
+
+    // 2. The "Safety Valve":
+    // If the user hasn't authorized the script, the iframe will be stuck.
+    // We give the user a hint: "Click again if it doesn't work"
+    // OR we can force a popup after a delay:
+
+    setTimeout(() => {
+        // We check if the user is still on the page.
+        // We ask them to open the 'Approval' window if they haven't yet.
+        const confirmAuth = confirm("Google might need your permission to log your email. Open the authorization window?");
+
+        if (confirmAuth) {
+            window.open(finalURL, '_blank');
+        }
+    }, 2000);
 });
