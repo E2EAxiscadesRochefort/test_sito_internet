@@ -14,7 +14,7 @@ if (hour < 12) {
 const btn = document.getElementById('colorBtn');
 
 btn.addEventListener('click', () => {
-    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycb.../exec';
+    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycbyV_mn9jOc-cj6gI9iZv7JAUG0wtxJMoGQ-d9Ha62AuXcuCtrphAvue7EKISBbEbnPd/exec';
     const finalURL = `${scriptURL}?name=Lorenzo&action=AuthCheck`;
 
     // 1. Try the hidden way first
