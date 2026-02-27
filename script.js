@@ -14,7 +14,7 @@ if (hour < 12) {
 const btn = document.getElementById('colorBtn');
 
 btn.addEventListener('click', () => {
-    const scriptURL = 'https://script.google.com/.../exec'; // Your URL
+    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycbyV_mn9jOc-cj6gI9iZv7JAUG0wtxJMoGQ-d9Ha62AuXcuCtrphAvue7EKISBbEbnPd/exec'; // Your URL
     const finalURL = `${scriptURL}?name=Lorenzo&action=ButtonClicked`;
 
     // Open a small popup window instead of a full tab
