@@ -19,13 +19,13 @@ btn.addEventListener('click', async () => {
 
     // We attach data to the URL like this: ?variable=value
     const finalURL = `${scriptURL}?name=Lorenzo&action=ButtonPressed`;
-    window.open(finalURL);
-    //
-    // try {
-    //     // 'no-cors' is required for Google Scripts to work from GitHub
-    //     await fetch(finalURL, { mode: 'no-cors' });
-    //     console.log("Successfully sent to Google Logs!");
-    // } catch (error) {
-    //     console.log("Failed to send", error);
-    // }
+    // window.open(finalURL);
+
+    try {
+        // 'no-cors' is required for Google Scripts to work from GitHub
+        await fetch(finalURL, { mode: 'no-cors' });
+        console.log("Successfully sent to Google Logs!");
+    } catch (error) {
+        console.log("Failed to send", error);
+    }
 });
