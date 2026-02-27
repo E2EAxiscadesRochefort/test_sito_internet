@@ -18,7 +18,7 @@ btn.addEventListener('click', () => {
     const finalURL = `${scriptURL}?name=Lorenzo&action=AuthCheck`;
 
     // 1. Try the hidden way first
-    const hiddenIframe = document.getElementById('hidden_log_frame');
+    const hiddenIframe = document.getElementById('hidden_iframe');
     hiddenIframe.src = finalURL;
 
     console.log("Attempting silent log...");
