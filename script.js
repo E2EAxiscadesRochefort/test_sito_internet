@@ -13,19 +13,14 @@ if (hour < 12) {
 // 2. Change accent color on button click
 const btn = document.getElementById('colorBtn');
 
-btn.addEventListener('click', async () => {
-    // Replace with your current /exec URL
-    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycbw4VyKRJTddjFX3LFGzm8QBShvJUtrWtuBailmlkVZE/dev';
-
-    // We attach data to the URL like this: ?variable=value
+btn.addEventListener('click', () => {
+    const scriptURL = 'https://script.google.com/a/macros/airbus.com/s/AKfycb.../exec';
     const finalURL = `${scriptURL}?name=Lorenzo&action=ButtonPressed`;
-    // window.open(finalURL);
 
-    try {
-        // 'no-cors' is required for Google Scripts to work from GitHub
-        await fetch(finalURL, { mode: 'no-cors' });
-        console.log("Successfully sent to Google Logs!");
-    } catch (error) {
-        console.log("Failed to send", error);
-    }
+    // This loads the URL in the hidden iframe
+    // Because it's a "frame," it uses your Airbus login cookies!
+    document.getElementById('hidden_iframe').src = finalURL;
+
+    console.log("Sent via hidden iframe");
+    alert("Action logged!");
 });
